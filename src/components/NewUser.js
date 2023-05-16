@@ -375,21 +375,19 @@ import axios from "axios"
     };
 
     return (
+        
     
                 <Modal show={showModal} onHide={handleClose}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Add User</Modal.Title>
+                        <Modal.Title></Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-        <div className="container-fluid py-2 h-100 gradient-custom">
-            <div className="row d-flex justify-content-center align-items-center h-100">
-                <div className="col-12 col-md-8 col-lg-6 col-xl-5">
-                    <div className="card-body p-5 text-center">
+                    <div className="container max-width: 500px   margin: 0 auto padding: 20px">
+  
+                        <form className="signup-form background-color: #f5f5f5 " onSubmit={handleSubmit}>
+                            <h2 className="fw-bold text-uppercase text-warning">Add New User</h2>
 
-                        <form className="mb-md-5 mt-md-1 pb-5 login-form" onSubmit={handleSubmit}>
-                            <h2 className="fw-bold mb-4 text-uppercase text-warning">Add New User</h2>
-
-                            <div className="form-group mb-4">
+                            <div className="form-group">
                                 <input
                                     type="text"
                                     id="username"
@@ -495,10 +493,10 @@ import axios from "axios"
                                     name="user_image"
                                     accept="image/*"
                                     onChange={handleFileChange}
-                                    className="form-control form-control-lg"
+                                    className="  padding: 10px background-color: #4caf50 cursor: pointer border-radius: 5px color: white border: none  width: 100%"
                                    
                                 />
-                                <button onClick={handleUpload} className="btn btn-secondary mt-3">Upload</button>
+                                <button className="  padding: 10px background-color: #4caf50 cursor: pointer border-radius: 5px color: white border: none  width: 100%" onClick={handleUpload} >Upload</button>
                             </div>
 
                             <div className="form-group mb-4">
@@ -507,9 +505,9 @@ import axios from "axios"
                         </form>
 
                     </div>
-                </div>
-            </div>
-        </div>
+          
+ 
+            
         </Modal.Body>
       </Modal>
     );

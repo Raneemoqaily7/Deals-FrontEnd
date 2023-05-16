@@ -1,0 +1,36 @@
+{
+    
+      "title": "التسجيل",
+      "username": "اسم المستخدم",
+      "email": "البريد الإلكتروني",
+      "password": "كلمة المرور",
+      "confirmPassword": "تأكيد كلمة المرور",
+      "phone": "الهاتف",
+      "gender": "الجنس",
+     
+      "male": "ذكر",
+      "female": "أنثى",
+      "dateOfBirth": "تاريخ الميلاد",
+      "uploadImage": "رفع الصورة",
+      "passwordnotmatch":"كلمات السر لا تتطابق",
+      "choosegender":"اختر الجنس",
+      "submit": "إرسال",
+      "login":"نسجيل دخول",
+      "logout":"تسجيل خروج",
+      "donthaveaccount":"    ليس لديك حساب    " ,
+      "delete" :"حذف",
+      "adduser":"إضافة مستخدم",
+      "adddeal":"إضافه صفقة",
+      "deal":"صفقة",
+      "amount":"المبلغ الإجمالي",
+      "home":"الصفحة الرئيسية",
+      "deals":"الصفقات",
+      "manage":"إدارة",
+      "userid":"معرف المستخدم ",
+      "claim":"مطالبة",
+      "claimed":"تمت المطالبة",
+      "dealsoverview":"نظرة عامة على الصفقات",
+      "profile":"ملف تعريف"
+    }
+  
+  

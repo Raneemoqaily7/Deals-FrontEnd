@@ -1,0 +1,42 @@
+{
+   
+      "title": "Sign Up",
+      "username": "User Name",
+      "email": "Email",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "phone": "Phone",
+      "gender": "Gender",
+      
+      "male": "Male",
+      "female": "Female",
+      "dateOfBirth": "Date of Birth",
+      "uploadImage": "Upload Image",
+      "passwordnotmatch":"Passwords don't match",
+      "choosegender":"Choose Gender",
+      "loading":"Loading",
+      
+      "submit": "Submit",
+      
+      "login":"Login",
+      "logout":"Log Out",
+      "enteremailandpassword":"Please enter your E-mail and Password!",
+      "donthaveaccount":"Dont have an account ?   ",
+      "adduser":"Add User",
+      "delete":"Delete",
+      "adddeal":"Add Deal",
+      "deal":"Deals",
+      "amount":"Total Amount",
+      "home":"Home",
+      "deals":"Deals",
+      "manage":"management",
+      "userid":"User ID",
+      "claim":"Claim",
+      "claimed":"Claimed",
+      "dealsoverview":"Deals OverView",
+      "profile":"Profile"
+
+
+    
+  }
+  

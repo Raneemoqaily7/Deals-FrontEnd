@@ -3,12 +3,15 @@ import axios from "axios";
 import { AgGridReact } from 'ag-grid-react';
 import AdminHome from "./AdminHome";
 
+import { useTranslation } from "react-i18next";
+
 
 
 export default function ClaimedDeals() {
     const [user, setUser] = useState({username:""})
     const [inputValue, setInputValue] = useState('');
     const [deals, setClaimedDeals] = useState([])
+    const [t] = useTranslation();
     const columnDefs = [
         { field: 'name' },
         { field: 'amount' },
@@ -42,7 +45,7 @@ export default function ClaimedDeals() {
             <AdminHome />
             <div className="ag-theme-bootstrap" style={{ height: '400px', width: '100%' }}>
                 <div>
-                <h3> User id :</h3>
+                <h3> {t("userid")}:</h3>
                     <input
                     style={{  width: '50%' }}
                         type="text"
@@ -54,7 +57,7 @@ export default function ClaimedDeals() {
                  
                  <br></br>
                  <div>
-                    <h3> User name :{user.username}</h3>
+                    <h3>{t("username")}:{user.username}</h3>
                    
                  </div>
                 <AgGridReact rowData={deals} columnDefs={columnDefs} pagination={true} paginationPageSize={10} />

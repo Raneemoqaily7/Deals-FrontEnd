@@ -3,11 +3,14 @@ import { Card } from 'react-bootstrap';
 import axios from 'axios';
 import { useCookies } from "react-cookie";
 import UserHome from './UserHome';
+import i18n from 'i18next';
+import { useTranslation } from "react-i18next";
 
 function UserProfile(props) {
     const [cookie, setCookie] = useCookies();
     const [selectedFile, setSelectedFile] = useState(null);
     const [image, setUserImage] = useState(null);
+    const [t, i18n] = useTranslation();
 
     const [formData, setFormData] = useState({
         username: "",
@@ -46,7 +49,7 @@ function UserProfile(props) {
                 console.log(updatedFormData, "UPDATED FORM DATA2")
                 const updatedUser = { ...cookie.user, user_image: user_image };
                 setCookie("user", updatedUser, { path: "/" });
- 
+
                 setUserImage(user_image);
 
 
@@ -56,65 +59,99 @@ function UserProfile(props) {
             });
 
     };
+
+
     const cardStyle = {
-        maxWidth: '300px',
+        maxWidth: '500px',
         margin: '0 auto',
         marginTop: '20px',
         boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)',
     };
 
+
     const imageStyle = {
-        height: '300px',
-        maxWidth: '300px',
+        height: '400px',
+        maxWidth: '500px',
         objectFit: 'cover',
     };
 
     const nameStyle = {
-        fontSize: '20px',
+        fontSize: '25px',
         fontWeight: 'bold',
         marginBottom: '10px',
         textAlign: 'center',
-
     };
 
     const textStyle = {
-        fontSize: '16px',
+        fontSize: '21px',
         marginBottom: '20px',
         textAlign: 'center',
-    };
+        fontFamily: "Courier New, monospace",
+        fontweight: "bold",
+            fontsize: "24px",
+};
+
+
+const buttonStyle = {
+    display: 'block',
+    margin: '0 auto',
+    marginBottom: '10px',
+    marginRight:"10px",
+    backgroundColor: 'dark',
+};
 
 
 
-    return (
-        <div>
-            <UserHome />
-            <Card style={cardStyle}>
 
-                <label className="form-label" htmlFor="userImage">User Image</label>
-                <input
-                    type="file"
-                    id="userImage"
-                    name="userImage"
-                    accept="image/*"
-                    onChange={handleFileChange}
-                />
-                <button onClick={handleUpload}>Upload</button>
 
-                <Card.Img variant="top" src={formData.user_image} style={imageStyle} />
-                <Card.Body>
-                    <Card.Title style={nameStyle}>{formData.username}</Card.Title>
-                    <Card.Text style={textStyle}>{formData.email}</Card.Text>
-                    <Card.Text style={textStyle}>{formData.gender} </Card.Text>
-                    <Card.Text style={textStyle}>{formData.Date_Of_Birth} </Card.Text>
-                    <Card.Text style={textStyle}>{formData.phone} </Card.Text>
-                    <Card.Text style={textStyle}>{formData.claimed_deal.length} Deals</Card.Text>
-                    <Card.Text style={textStyle}>{amount} Amount</Card.Text>
-                </Card.Body>
-            </Card>
-        </div>
-    );
+
+
+return (
+    <div>
+        <UserHome />
+        <Card style={cardStyle}>
+
+
+
+
+            <Card.Img variant="top" src={formData.user_image} style={imageStyle} />
+            <Card.Body>
+                <Card.Title style={nameStyle}>{formData.username}</Card.Title>
+                <Card.Text style={textStyle}>{formData.email}</Card.Text>
+                <Card.Text style={textStyle}>{formData.gender} </Card.Text>
+                <Card.Text style={textStyle}>{formData.Date_Of_Birth} </Card.Text>
+                <Card.Text style={textStyle}>{formData.phone} </Card.Text>
+                <Card.Text style={textStyle}>{formData.claimed_deal.length} {t("deal")}</Card.Text>
+                <Card.Text style={textStyle}>{amount} {t("amount")}</Card.Text>
+            </Card.Body>
+            <div style={{ display: 'flex', alignItems: 'center' }}>  
+            <label className="form-label " htmlFor="userImage"></label>
+             <input
+                type="file"
+                id="userImage"
+                name="userImage"
+                accept="image/*"
+                onChange={handleFileChange}
+                
+
+                style={buttonStyle}
+            />
+                <button onClick={handleUpload} style={buttonStyle} marginLeft="10px">{t("uploadImage")}</button>
+                </div>
+
+        </Card>
+    </div>
+);
 
 
 }
 
 export default UserProfile;
+
+
+
+
+
+
+
+

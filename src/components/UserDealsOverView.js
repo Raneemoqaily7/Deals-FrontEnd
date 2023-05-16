@@ -5,35 +5,18 @@ import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
 import { useCookies } from "react-cookie";
+import { useTranslation } from "react-i18next";
+
+
 
 import NewDeal from './NewDeal';
 import UserHome from './UserHome';
 function UserDealView() {
     const [cookie, setCookie, removeCookie] = useCookies();
     const [deals, setDeals] = useState([]);
+    const [t, i18n] = useTranslation();
     
-    // const [claimedDeals, setClaimedDeals] = useState([]);
-
-    // const [token, setToken] = useState('');
-    // const [selectdsUsers, setselectdsUsers] = useState([]);
-
-
-    // useEffect(() => {
-    // 
-    // axios.get(`http://127.0.0.1:8000/api/user_list/${cookie.user.id}`)
-    // .then((response) => {
-    //    setUser(response.data)
-
-    //   console.log(response.data, "response.data")
-    // })
-
-    // .catch((error) => {
-    //   console.log(error);
-    // });
-    // }, [])
-
-
-
+    
 
     function ButtonRenderer(props) {
         const [user, setUser] = useState(cookie.user);
@@ -73,8 +56,8 @@ function UserDealView() {
             <div>
 
 
-                {user.claimed_deal.find(item => item.id === props.data.id)? <button onClick={test}>Claimed</button>
-                    : <button onClick={handleClick}>Claim</button>
+                {user.claimed_deal.find(item => item.id === props.data.id)? <button onClick={test}>{t("claimed")}</button>
+                    : <button onClick={handleClick}>{t("claim")}</button>
                 }
             </div>
         );

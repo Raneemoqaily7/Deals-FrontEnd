@@ -9,6 +9,7 @@ import 'ag-grid-community/styles/ag-theme-alpine.css';
 
 import NewUser from "./NewUser"
 import AdminHome from './AdminHome';
+import { useTranslation } from "react-i18next";
 function UserList() {
   const [users, setUsers] = useState([]);
   const [token, setToken] = useState('');
@@ -18,6 +19,7 @@ function UserList() {
   const [showModal, setShowModal] = useState(false);
   const handleClose = () => setShowModal(false);
   const handleShow = () => setShowModal(true);
+  const [t] = useTranslation();
 
 
 
@@ -25,9 +27,11 @@ function UserList() {
   const [columnDefs, setColumnDefs] = useState([
     {
       field: 'username',
+      
       minWidth: 190,
       checkboxSelection: true,
       headerCheckboxSelection: true,
+      headerName: t('username'),
     },
     { field: 'email' },
     { field: 'phone' },
@@ -119,8 +123,8 @@ function UserList() {
       <AdminHome />
       <div className="ag-theme-bootstrap" style={{ height: '400px', width: '100%' }}>
 
-        <button onClick={handleDelete}>Delete</button>
-        <button onClick={handleShow}>Add User</button>
+        <button onClick={handleDelete}>{t("delete")}</button>
+        <button onClick={handleShow}>{t("adduser")}</button>
         <NewUser showModal={showModal} handleClose={handleClose} setUsers={setUsers} />
         <AgGridReact rowData={users} columnDefs={columnDefs} defaultColDef={defaultColDef} pagination={true} paginationPageSize={10} gridOptions={gridOptions} onGridReady={onGridReady} />
       </div>

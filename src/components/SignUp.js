@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useTransition } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from "react-router-dom";
-
+import { useTranslation } from "react-i18next";
 import axios from "axios";
-function SignUp() {
-    const navigate = useNavigate();
 
+function SignUp() {
+    const [t] = useTranslation();
+    const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState(false); 
     const [selectedFile, setSelectedFile] = useState(null);
 
     const [formData, setFormData] = useState({
@@ -55,6 +57,7 @@ function SignUp() {
 
 
     const handleSubmit = (e) => {
+        setIsLoading(true)
         e.preventDefault();
         // Perform form submission logic here
         console.log(formData);
@@ -105,9 +108,11 @@ function SignUp() {
 
                     }
                 }
-
+                
                 return;
-            })
+            }).finally(() => {
+                setIsLoading(false); // Set isLoading to false regardless of success or error
+            });
 
     };
 
@@ -142,7 +147,7 @@ function SignUp() {
                     <div className="card-body p-5 text-center">
 
                         <form className="mb-md-5 mt-md-1 pb-5 login-form" onSubmit={handleSubmit}>
-                            <h2 className="fw-bold mb-4 text-uppercase text-warning">Sign Up</h2>
+                            <h2 className="text-uppercase text-warning">{t("title")}</h2>
 
                             <div className="form-group mb-4">
                                 <input
@@ -152,7 +157,7 @@ function SignUp() {
                                     value={formData.username}
                                     onChange={handleChange}
                                     className="form-control form-control-lg"
-                                    placeholder="Username"
+                                    placeholder={t("username")}
                                     required
                                 />
                                 {userNameError && <div className="error">{userNameError}</div>}
@@ -166,7 +171,7 @@ function SignUp() {
                                     value={formData.email}
                                     onChange={handleChange}
                                     className="form-control form-control-lg"
-                                    placeholder="Email"
+                                    placeholder={t("email")}
                                     required
                                 />
                                 {emailError && <div className="error">{emailError}</div>}
@@ -180,7 +185,7 @@ function SignUp() {
                                         value={formData.password}
                                         onChange={handleChange}
                                         className="form-control form-control-lg"
-                                        placeholder="Password"
+                                        placeholder={t("password")}
                                         required
                                     />
 
@@ -194,12 +199,12 @@ function SignUp() {
                                     value={formData.password2}
                                     onChange={handleChange}
                                     className="form-control form-control-lg"
-                                    placeholder="Confirm Password"
+                                    placeholder={t("confirmPassword")}
                                     required
                                 />
                             </div>
                             {formData.password !== formData.password2 && (
-                                <div className="error">Passwords don't match</div>
+                                <div className="error">{t("passwordnotmatch")}</div>
                             )}
 
                             <div className="form-group mb-4">
@@ -210,7 +215,7 @@ function SignUp() {
                                     value={formData.phone}
                                     onChange={handleChange}
                                     className="form-control form-control-lg"
-                                    placeholder="Phone"
+                                    placeholder={t("phone")}
                                     required
                                 />
                                 {phoneError && <div className="error">{phoneError}</div>}
@@ -225,9 +230,9 @@ function SignUp() {
                                     className="form-control form-control-lg"
                                     required
                                 >
-                                    <option value={null}>Select Gender</option>
-                                    <option value="MALE">Male</option>
-                                    <option value="FEMALE">Female</option>
+                                    <option value={null}>{t("choosegender")}</option>
+                                    <option value="MALE">{t("male")}</option>
+                                    <option value="FEMALE">{t("female")}</option>
                                 </select>
                             </div>
 
@@ -255,9 +260,13 @@ function SignUp() {
                                 />
                                 {/* <button onClick={handleUpload} className="btn btn-secondary mt-3">Upload</button> */}
                             </div>
-
+                            {isLoading && (
+                                <div className="spinner-border text-warning" role="status">
+                                    <span className="visually-hidden">{t("loading")}...</span>
+                                </div>
+                            )}
                             <div className="form-group mb-4">
-                                <input type="submit" value="Sign Up" className="btn btn-warning btn-lg" />
+                                <input type="submit" value={t("submit")} className="btn btn-warning btn-lg"  disabled={isLoading}/>
                             </div>
                         </form>
 

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from 'react-cookie';
+import { useTranslation } from "react-i18next";
 
 import { isAuthContext, userRoleContext } from "./utils/UserContext"
 import axios from "axios";
@@ -13,6 +14,8 @@ function Login() {
     const [password, setPassword] = useState('');
     const [loginError, setLoginError] = useState('');
     const [isAdmin, setIsAdmin] = useState(false);
+    const [t] = useTranslation();
+
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -99,12 +102,12 @@ function Login() {
                         <div className="card-body p-5 text-center">
 
                             <form className="mb-md-5 mt-md-1 pb-5 login-form">
-                                <h2 className="fw-bold mb-2 text-uppercase text-warning">Login</h2>
-                                <p className="text-white-50 mb-5">Please enter your E-mail and Password!</p>
+                                <h2 className="fw-bold mb-2 text-uppercase text-warning">{t("login")}</h2>
+                                <p className="text-white-50 mb-5">{t("enteremailandpassword")}</p>
                                 <div className="form-outline form-white mb-4">
                                     <input onChange={(e) => setEmail(e.target.value)}
                                         type="text" id="username" className="form-control form-control-lg" required />
-                                    <label className="form-label" htmlFor="typeEmailX">username</label>
+                                    <label className="form-label" htmlFor="typeEmailX">{t("username")}</label>
 
                                 </div>
 
@@ -112,20 +115,20 @@ function Login() {
                                 <div className="form-outline form-white mb-4">
                                     <input onChange={(e) => setPassword(e.target.value)}
                                         id="password" className="form-control form-control-lg" required />
-                                    <label className="form-label" htmlFor="typeEmailX">Password</label>
+                                    <label className="form-label" htmlFor="typeEmailX">{t("email")}</label>
                                 </div>
 
 
 
 
 
-                                <button className="btn btn-outline-warning btn-lg px-5 login-btn  " type="submit" onClick={handleLogin} > Login</button>
+                                <button className="btn btn-outline-warning btn-lg px-5 login-btn  " type="submit" onClick={handleLogin} > {t("login")}</button>
                                 {loginError && <div className="error">{loginError}</div>}
 
 
 
                                 <div>
-                                    <p className="pb-lg-2 mt-2">Don&apos;t have an account? <Link to="/signup">Sign up</Link></p>
+                                    <p className="pb-lg-2 mt-2">{t("donthaveaccount")} <Link to="/signup">{t("title")}</Link></p>
 
                                 </div>
                             </form>

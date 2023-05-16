@@ -6,14 +6,22 @@ import { UserContext, isAuthContext, userRoleContext } from "./components/utils/
 import UserDealView from "./components/UserDealsOverView"
 import { useCookies } from "react-cookie";
 
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import SignUp from "./components/SignUp";
 import UserHome from "./components/UserHome";
 import ClaimedDeals from './components/ClaimedDeals'
 import DealList from "./components/DealList"
 import UserList from "./components/User";
+import translationEN from './locale/en.json';
+import translationAR from './locale/ar.json';
+import "./i18n"
+import i18n from "./i18n";
+import { useTranslation } from "react-i18next";
  function App() {
+
+
+  const [t,i18n] = useTranslation();
 
 
 
@@ -25,10 +33,28 @@ import UserList from "./components/User";
 
   const [cookie, setCookie, removeCookie] = useCookies();
 
+const changeToArabic =()=>{i18n.changeLanguage("ar")}
+const changeToEnglish =()=>{i18n.changeLanguage("en")}
+useEffect(() => {
+  if (i18n.language === 'ar') {
+    document.documentElement.setAttribute('dir', 'rtl');
+    document.documentElement.style.textAlign = 'right'
+    document.documentElement.style.marginRight = '0';
+    document.documentElement.style.marginLeft = 'auto';
+  } else {
+    document.documentElement.setAttribute('dir', 'ltr');
+    document.documentElement.style.textAlign = 'left'
+    document.documentElement.style.marginRight = 'auto';
+    document.documentElement.style.marginLeft = '0';
+  }
+}, [i18n.language]);
 
- 
+
+
   return (
     <div className="App">
+      <button onClick={changeToArabic}>ar</button>
+      <button onClick={changeToEnglish}>en</button>
        {
         !cookie.token ?
           <Router>

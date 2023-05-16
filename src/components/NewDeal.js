@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import axios from "axios";
 
+import { useTranslation } from "react-i18next";
+
 function NewDeal({ showModal, handleClose, setDeals }) {
     const [name, setname] = useState('');
     const [status, setStatus] = useState('Active');
@@ -9,6 +11,7 @@ function NewDeal({ showModal, handleClose, setDeals }) {
     // const [phone, setPhone] = useState(null);
     const [amount, setamount] = useState(null);
     const [currency, setcurrency] = useState(null);
+    const [t] = useTranslation();
 
 
 
@@ -82,21 +85,15 @@ function NewDeal({ showModal, handleClose, setDeals }) {
                         Description:
                         <input type="Description" value={Description} onChange={(event) => setdescription(event.target.value)} />
 
-                        {/* {descriptionError && <div className="error">{descriptionError}</div>} */}
 
                     </label>
-                    {/* <br />
-                    <label>
-                        Phone:
-                        <input type="text" value={phone} onChange={handlePhoneChange} placeholder='+962XXXXXXXXX' />
-                            {phoneError && <div className="error">{phoneError}</div>} 
-                    </label> */}
+                  
                     <br />
                     <label>
                         amount:
                         <input type="amount" value={amount} onChange={(event) => setamount(event.target.value)} />
 
-                        {/* {descriptionError && <div className="error">{descriptionError}</div>} */}
+                       
 
                     </label>
                     <br />
@@ -104,20 +101,12 @@ function NewDeal({ showModal, handleClose, setDeals }) {
                         currency:
                         <input type="currency" value={currency} onChange={(event) => setcurrency(event.target.value)} />
 
-                        {/* {descriptionError && <div className="error">{descriptionError}</div>} */}
+                        
 
                     </label>
-                    {/* <label>
-                        Date of Birth:
-                        <input type="date" value={currency} onChange={(event) => setcurrency(event.target.value)}/>
-                    </label>
-                    <br /> */}
-                    {/* <label>
-                        User Image:
-                        <input type="file" onChange={(event) => setUserImage(event.target.files[0])} />
-                    </label> */}
+                  
                     <br />
-                    <Button variant="primary" type="submit">Add deal</Button>
+                    <Button variant="primary" type="submit">{t("adddeal")}</Button>
                 </form>
             </Modal.Body>
         </Modal>
